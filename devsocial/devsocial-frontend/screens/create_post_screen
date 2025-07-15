@@ -1,0 +1,17 @@
+<textarea id="postcontent" placeholder="what's on your mind"></textarea>
+<button oneclick="publishPost()">Publish</button>
+
+<script>
+    function publishPost() {
+        const content = document.getElementById("postcontent").value;
+
+        fetch("http://localhost:8080/posts", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({content: content})
+        })
+        .then(res => res.json())
+        .then(res => alert("Post published!"))
+        .then(alert("Error publishing post"));
+    }
+</script>
